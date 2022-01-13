@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fragment_home"
+        android:icon="@drawable/home"
+        app:cnb_textColor="@color/black"
+        android:title="Home"
+        android:onClick="true"
+        app:cnb_backgroundColor="@color/xanh_ngoc" />
+    <item
+        android:id="@+id/fragmentproduct"
+        android:icon="@drawable/product1"
+        android:title="Products"
+        app:cnb_backgroundColor="@color/xanh_duong_nhat"
+        />
+    <item
+        android:id="@+id/menu_nav_live"
+        android:icon="@drawable/live"
+        android:title="Live Stream"
+        app:cnb_backgroundColor="@color/xanh_cay_nhat1" />
+    <item
+        android:id="@+id/menu_nav_setting"
+        android:icon="@drawable/setting1"
+        android:title="Setting"
+        app:cnb_backgroundColor="@color/tim_nhat" />
+    <item
+        android:id="@+id/menu_nav_user"
+        android:icon="@drawable/user"
+        android:title="Account"
+        app:cnb_backgroundColor="@color/hong_nhat" />
+
+</menu>

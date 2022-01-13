@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin</title>
+  </head>
+  <body>
+    <!-- video live -->
+    <div id="video"></div>
+    <!-- product number -->
+    <hr />
+    <div id="number"></div>
+    <!-- viewer number -->
+    <hr />
+    <div id="viewer"></div>
+    <!-- buy able -->
+    <hr />
+    <div id="buyable"></div>
+    <!-- live url -->
+    <hr />
+    <input
+      type="text"
+      id="url-live"
+      value="https://www.youtube.com/watch?v=ZqDBgYPpUTg"
+    />
+    <!-- product -->
+    <hr />
+    <input type="text" id="productId" />
+    <!-- open/close stream -->
+    <hr />
+    <button id="open-live">mở stream</button>
+    <!-- open/close -->
+    <hr />
+    <button id="open-buy">mở bán</button>
+    <!-- thay đổi sản phẩm -->
+    <hr />
+    <button id="change-product">thay đổi</button>
+    <!-- cdn socket -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

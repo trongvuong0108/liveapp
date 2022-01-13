@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>client</title>
+  </head>
+  <body>
+    <!-- video live -->
+    <div id="video"></div>
+    <!-- product number -->
+    <hr />
+    <div id="number"></div>
+    <!-- viewer number -->
+    <hr />
+    <div id="viewer"></div>
+    <!-- liver -->
+    <hr />
+    <div id="liver"></div>
+    <!-- buy able -->
+    <hr />
+    <div id="buyable"></div>
+    <!-- buy product -->
+    <hr />
+    <button id="buy">mua</button>
+    <!-- out -->
+    <hr />
+    <button id="out">out</button>
+    <!-- cdn socket -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script>
+      const getEle = (id) => document.getElementById(id);
+      const socket = io("http://localhost:2224");
+      const username = "admin2";
+      const role = false;
+      let live = false;
+      let product = null;
+      socket.emit("get-live", username, role, null, null);
+      socket.on("receive-live", (data) => {
+        if (data) {
+          product = data.productItem;
+          const temp = data.urlServer.split("=");
+          const urlLive = `https://www.youtube.com/embed/${temp[1]}`;
+          getEle("liver").innerText = data.liver;
+          getEle("video").innerHTML = `<iframe
+          width="560"
+          height="315"
+          src=${urlLive}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>`;
+          live = true;
+        } else {
+          live = false;
+          alert("không có stream");
+        }
+      });
+      socket.on("product-number", (number) => {
+        getEle("number").innerText = number;
+      });
+      socket.on("get-viewer", (number) => {
+        getEle("viewer").innerText = number;
+      });
+      socket.on("enable-buy-client", (bool) => {
+        let buyable = bool ? "đang mở bán" : "đang đóng bán";
+        getEle("buyable").innerHTML = buyable;
+      });
+      socket.on("admin-close-live", (closed) => {
+        console.log(closed);
+        alert("live stream kết thúc");
+      });
+      getEle("buy").addEventListener("click", () => {
+        socket.emit("client-buy", username, 2800, [
+          [product.productId, 1, 1400],
+        ]);
+      });
+      getEle("out").addEventListener("click", () => {
+        socket.emit("out-live");
+      });
+    </script>
+  </body>
+</html>
